@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+<h2>Login</h2>
+<form method="POST">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      로그인
+    </button>
+  {% endbuttons %}
+</form>
+<p>
+아이디가 없으신가요?
+<a class="" href="{% url 'accounts:signup' %}">회원가입</a>
+</p>
+          
+<a href="{% url 'movies:index' %}"><h5>Back</h5></a>
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-danger">수정</button>
+</form>
+<a href="{% url 'accounts:profile' %}"><h5 class="mt-2">Back</h5></a>
+{% endblock content %}

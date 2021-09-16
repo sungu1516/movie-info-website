@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+  <div class="container-fluid">
+    <a class="navbar-brand text-primary" href="{% url 'movies:index' %}">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="navbar-brand text-warning" href="{% url 'movies:create' %}">Create</a>
+        </li>
+
+      </ul>
+    <div class="mt-2 me-5">
+    <form class="d-flex" action="{% url 'movies:search' %}">
+      <input class="form-control me-2" type="search" placeholder="제목을 입력하세요" aria-label="Search" name="keyword" required>
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    </div>
+
+      {% if request.user.is_authenticated %}
+        <div class="dropdown mt-2">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ request.user.username }}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">  
+            <li>
+              <a class="dropdown-item" href="{% url 'accounts:profile'%}">My Page</a>
+            </li>
+            <li>
+              <form action="{% url 'accounts:logout' %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-link dropdown-item">Logout</button>
+              </form>
+            </li>
+          </ul>
+        </div>
+        {% else %}
+            <a class="btn btn-danger mt-2" href="{% url 'accounts:login' %}">Login</a>
+        {% endif %} 
+  </div>
+ </div>       
+
+</nav>

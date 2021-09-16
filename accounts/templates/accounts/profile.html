@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>마이 페이지</h2>
+
+  
+
+
+  <p>ID: {{ request.user }}</p>
+  <p>First Name: {{ request.user.first_name }}</p>
+  <p>Last Name: {{ request.user.last_name }}</p>
+  <p>Email: {{ request.user.email }}</p>
+
+
+  <a href="{% url 'accounts:update' %}" class="btn btn-primary">회원정보수정</a>
+  <a href="{% url 'accounts:password' %}" class="btn btn-success">비밀번호수정</a>
+  <form action="{% url 'accounts:delete' %}" method="POST" class="mt-2"> 
+    {% csrf_token %}
+    <button class="btn btn-danger">회원탈퇴</button>
+  </form>
+{% endblock content %}
